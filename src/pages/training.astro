@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { courses, jobAids } from '../data/content';
+---
+
+<BaseLayout
+  title="Training and job aids"
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Training and job aids', href: '/training' },
+  ]}
+>
+  <PageHeader
+    title="Training and job aids"
+    lede="Modules, webinars, and one-page aids that build documentation skills."
+  />
+  <div class="container page-body">
+    <h2>Courses</h2>
+    <div style="overflow-x: auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th scope="col">Course</th>
+            <th scope="col">Format</th>
+            <th scope="col">Length</th>
+            <th scope="col">Audience</th>
+            <th scope="col">Credit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            courses.map((c) => (
+              <tr>
+                <th scope="row">{c.title}</th>
+                <td>{c.format}</td>
+                <td>{c.length}</td>
+                <td>{c.audience}</td>
+                <td>{c.credit}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="section-heading">Job aids</h2>
+    <ul class="card-grid">
+      {
+        jobAids.map((a) => (
+          <li class="card">
+            <h3>{a.title}</h3>
+            <p>{a.summary}</p>
+            <span class="card__meta">Placeholder link</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

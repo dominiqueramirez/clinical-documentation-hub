@@ -1,0 +1,371 @@
+/* VA Design System: tokens, core styles, typography, utilities, web-component styles */
+@import '@department-of-veterans-affairs/css-library/dist/tokens/css/variables.css';
+@import '@department-of-veterans-affairs/css-library/dist/stylesheets/core.css';
+@import '@department-of-veterans-affairs/css-library/dist/stylesheets/uswds-typography.css';
+@import '@department-of-veterans-affairs/css-library/dist/stylesheets/utilities.css';
+@import '@department-of-veterans-affairs/web-components/dist/component-library/component-library.css';
+
+/* Fonts ship in the css-library package and are loaded separately per VA docs */
+@font-face {
+  font-family: 'Source Sans Pro Web';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../node_modules/@department-of-veterans-affairs/css-library/dist/fonts/sourcesanspro-regular-webfont.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Source Sans Pro Web';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../node_modules/@department-of-veterans-affairs/css-library/dist/fonts/sourcesanspro-italic-webfont.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Source Sans Pro Web';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../../node_modules/@department-of-veterans-affairs/css-library/dist/fonts/sourcesanspro-bold-webfont.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../node_modules/@department-of-veterans-affairs/css-library/dist/fonts/bitter-regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Bitter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../../node_modules/@department-of-veterans-affairs/css-library/dist/fonts/bitter-bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Mono Web';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../../node_modules/@department-of-veterans-affairs/css-library/dist/fonts/roboto-mono-v5-latin-regular.woff2') format('woff2');
+}
+
+/* Site-level layout */
+html {
+  font-family: var(--vads-font-family-sans);
+}
+body {
+  margin: 0;
+  color: var(--vads-color-base);
+  background: var(--vads-color-white);
+  font-family: var(--vads-font-family-sans);
+  font-size: var(--vads-font-size-body-default);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1 0 auto;
+}
+h1, h2, h3, h4 {
+  font-family: var(--vads-font-family-heading);
+  color: var(--vads-color-base);
+  line-height: 1.2;
+}
+a {
+  color: var(--vads-color-link);
+}
+a:visited {
+  color: var(--vads-color-link-visited);
+}
+:focus-visible {
+  outline: 2px solid var(--vads-color-primary-alt-dark);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--vads-color-white);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header */
+.site-header {
+  background: var(--vads-color-primary-darker);
+  color: var(--vads-color-white);
+}
+.site-header__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.site-header__title {
+  font-family: var(--vads-font-family-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--vads-color-white);
+  text-decoration: none;
+}
+.site-header__title:visited {
+  color: var(--vads-color-white);
+}
+.site-header__tag {
+  display: block;
+  font-family: var(--vads-font-family-sans);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  opacity: 0.85;
+}
+.site-nav {
+  background: var(--vads-color-primary-dark);
+}
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-nav a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: var(--vads-color-white);
+  text-decoration: none;
+  border-bottom: 4px solid transparent;
+  font-weight: 700;
+}
+.site-nav a:visited {
+  color: var(--vads-color-white);
+}
+.site-nav a:hover,
+.site-nav a[aria-current='page'] {
+  border-bottom-color: var(--vads-color-primary-alt);
+  background: var(--vads-color-primary-darker);
+}
+
+/* Hero */
+.hero {
+  background: var(--vads-color-primary-lighter);
+  padding: 3rem 0;
+}
+.hero h1 {
+  font-size: var(--vads-font-size-2xl);
+  margin: 0 0 1rem;
+}
+.hero p {
+  font-size: var(--vads-font-size-body-lead);
+  max-width: 44rem;
+  margin: 0 0 1.5rem;
+}
+
+/* Page body */
+.page-title {
+  margin: 2rem 0 0.5rem;
+}
+.page-lede {
+  font-size: var(--vads-font-size-body-lead);
+  max-width: 44rem;
+  color: var(--vads-color-base-darker);
+}
+.page-body {
+  padding-bottom: 3rem;
+}
+.layout-with-side {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 48em) {
+  .layout-with-side {
+    grid-template-columns: 16rem 1fr;
+  }
+}
+.side-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--vads-color-base-lighter);
+}
+.side-nav li {
+  border-bottom: 1px solid var(--vads-color-base-lighter);
+}
+.side-nav a {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  text-decoration: none;
+}
+.side-nav a[aria-current='page'] {
+  font-weight: 700;
+  border-left: 4px solid var(--vads-color-primary);
+  padding-left: 0.75rem;
+  background: var(--vads-color-base-lightest);
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 2.5rem;
+  padding: 0;
+  list-style: none;
+}
+.card {
+  border: 1px solid var(--vads-color-base-lighter);
+  border-top: 4px solid var(--vads-color-primary);
+  border-radius: var(--vads-border-radius-md);
+  padding: 1.25rem;
+  background: var(--vads-color-white);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+ul.card-grid > li.card h2,
+ul.card-grid > li.card h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+ul.card-grid > li.card h2 a {
+  font-size: inherit;
+  font-family: inherit;
+}
+.card p {
+  margin: 0;
+  color: var(--vads-color-base-darker);
+}
+.card__meta {
+  font-size: var(--vads-font-size-xs);
+  color: var(--vads-color-base-dark);
+}
+.card__link {
+  margin-top: auto;
+  font-weight: 700;
+}
+
+/* Tags */
+.tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: var(--vads-font-size-xs);
+  font-weight: 700;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--vads-border-radius-md);
+  background: var(--vads-color-primary-alt-lightest);
+  color: var(--vads-color-primary-alt-darkest);
+}
+
+/* Content */
+.prose {
+  max-width: 44rem;
+}
+.container.prose {
+  max-width: 64rem;
+}
+.container.prose > * {
+  max-width: 44rem;
+}
+.prose h2 {
+  margin-top: 2rem;
+}
+.checklist {
+  list-style: none;
+  padding: 0;
+}
+.checklist li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--vads-color-base-lightest);
+}
+.checklist input {
+  margin-top: 0.35rem;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+.template-box {
+  background: var(--vads-color-base-lightest);
+  border: 1px solid var(--vads-color-base-lighter);
+  border-radius: var(--vads-border-radius-md);
+  padding: 1rem;
+  font-family: var(--vads-font-family-mono);
+  font-size: var(--vads-font-size-sm);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 2rem;
+}
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--vads-color-base-lighter);
+  vertical-align: top;
+}
+.data-table th {
+  background: var(--vads-color-base-lightest);
+}
+.section-heading {
+  margin-top: 2.5rem;
+}
+.demo-note {
+  font-size: var(--vads-font-size-sm);
+}
+
+/* Footer */
+.site-footer {
+  background: var(--vads-color-primary-darker);
+  color: var(--vads-color-white);
+  margin-top: 3rem;
+  padding: 2rem 0;
+}
+.site-footer a,
+.site-footer a:visited {
+  color: var(--vads-color-white);
+}
+.site-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem;
+}
+.site-footer h2 {
+  font-family: var(--vads-font-family-sans);
+  color: var(--vads-color-white);
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+}
+.site-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-footer li {
+  margin: 0.25rem 0;
+}
+.site-footer__fine {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--vads-color-primary-dark);
+  font-size: var(--vads-font-size-xs);
+  opacity: 0.85;
+}

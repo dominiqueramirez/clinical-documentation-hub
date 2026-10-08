@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { faqs } from '../data/content';
+---
+
+<BaseLayout
+  title="Frequently asked questions"
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'FAQ', href: '/faq' },
+  ]}
+>
+  <PageHeader title="Frequently asked questions" lede="Short answers to common documentation questions." />
+  <div class="container page-body prose">
+    <va-accordion open-single>
+      {
+        faqs.map((f) => (
+          <va-accordion-item header={f.question}>
+            <p>{f.answer}</p>
+          </va-accordion-item>
+        ))
+      }
+    </va-accordion>
+    <p>
+      Do not see your question? <a href="/contact">Contact the documentation team</a>.
+    </p>
+  </div>
+</BaseLayout>

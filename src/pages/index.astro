@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import { standards, templates, checklists, updates } from '../data/content';
+
+const featured = [
+  { title: 'Documentation standards', href: '/standards', summary: 'Timeliness, specificity, medication reconciliation, and copy-forward guidance.', tag: `${standards.length} standards` },
+  { title: 'Note templates', href: '/templates', summary: 'Copy-ready layouts for H&P, progress, discharge, and consult notes.', tag: `${templates.length} templates` },
+  { title: 'Quick reference', href: '/quick-reference', summary: 'Checklists and do-not-use lists for use at the point of care.', tag: `${checklists.length} checklists` },
+  { title: 'Training and job aids', href: '/training', summary: 'Modules, webinars, and one-page aids for providers and coders.', tag: 'Learning' },
+  { title: 'Policy and regulations', href: '/policy', summary: 'Policies, directives, and regulatory references that govern documentation.', tag: 'Reference' },
+  { title: 'Frequently asked questions', href: '/faq', summary: 'Short answers to common documentation questions.', tag: 'Help' },
+];
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container">
+      <h1>Clinical documentation, made clear</h1>
+      <p>
+        Standards, templates, and job aids to help providers write accurate, timely, and complete clinical notes.
+      </p>
+      <va-link-action href="/standards" text="Start with the standards" type="primary"></va-link-action>
+    </div>
+  </section>
+
+  <div class="container page-body">
+    <va-alert status="info" visible class="section-heading">
+      <h2 slot="headline">Template site</h2>
+      <p class="demo-note">All content here is sample data for layout and design review.</p>
+    </va-alert>
+
+    <h2 class="section-heading">Find what you need</h2>
+    <ul class="card-grid">
+      {featured.map((f) => <Card {...f} linkText="Go to section" />)}
+    </ul>
+
+    <h2 class="section-heading">Recent updates</h2>
+    <ul class="card-grid">
+      {
+        updates.map((u) => (
+          <li class="card">
+            <span class="card__meta">{u.date}</span>
+            <h3>{u.title}</h3>
+            <p>{u.summary}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { policies } from '../data/content';
+---
+
+<BaseLayout
+  title="Policy and regulations"
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Policy and regulations', href: '/policy' },
+  ]}
+>
+  <PageHeader
+    title="Policy and regulations"
+    lede="Policies, directives, and regulatory references that govern clinical documentation."
+  />
+  <div class="container page-body">
+    <div style="overflow-x: auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Identifier</th>
+            <th scope="col">Type</th>
+            <th scope="col">Effective</th>
+            <th scope="col">Summary</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            policies.map((p) => (
+              <tr>
+                <th scope="row">{p.title}</th>
+                <td>{p.identifier}</td>
+                <td><span class="tag">{p.type}</span></td>
+                <td>{p.effective}</td>
+                <td>{p.summary}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</BaseLayout>

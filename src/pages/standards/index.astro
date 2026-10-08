@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Card from '../../components/Card.astro';
+import { standards } from '../../data/content';
+---
+
+<BaseLayout
+  title="Documentation standards"
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Documentation standards', href: '/standards' },
+  ]}
+>
+  <PageHeader
+    title="Documentation standards"
+    lede="Expectations and best practices for complete, accurate, and timely clinical documentation."
+  />
+  <div class="container page-body">
+    <ul class="card-grid">
+      {
+        standards.map((s) => (
+          <Card
+            title={s.title}
+            href={`/standards/${s.slug}`}
+            summary={s.summary}
+            tag={s.audience}
+            meta={`Updated ${s.updated}`}
+            linkText="Read standard"
+          />
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>

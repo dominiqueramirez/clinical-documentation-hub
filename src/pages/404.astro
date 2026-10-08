@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+
+<BaseLayout title="Page not found">
+  <PageHeader title="Page not found" lede="The page you requested does not exist or has moved." />
+  <div class="container page-body">
+    <va-link-action href="/" text="Go to the home page" type="primary"></va-link-action>
+  </div>
+</BaseLayout>

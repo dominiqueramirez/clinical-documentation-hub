@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  summary: string;
+  meta?: string;
+  tag?: string;
+  linkText?: string;
+}
+const { title, href, summary, meta, tag, linkText = 'Read more' } = Astro.props;
+---
+
+<li class="card">
+  {tag && <span class="tag">{tag}</span>}
+  <h2><a href={href}>{title}</a></h2>
+  <p>{summary}</p>
+  {meta && <span class="card__meta">{meta}</span>}
+  <a class="card__link" href={href}>{linkText}<span class="usa-sr-only">: {title}</span></a>
+</li>

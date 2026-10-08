@@ -1,0 +1,27 @@
+---
+interface Item {
+  label: string;
+  href: string;
+}
+interface Props {
+  items: Item[];
+  label: string;
+  currentPath: string;
+}
+const { items, label, currentPath } = Astro.props;
+const norm = (p: string) => p.replace(/\/$/, '');
+---
+
+<nav class="side-nav" aria-label={label}>
+  <ul>
+    {
+      items.map((item) => (
+        <li>
+          <a href={item.href} aria-current={norm(currentPath) === norm(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

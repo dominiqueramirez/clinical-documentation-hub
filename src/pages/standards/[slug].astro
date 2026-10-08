@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SideNav from '../../components/SideNav.astro';
+import { standards } from '../../data/content';
+
+export function getStaticPaths() {
+  return standards.map((standard) => ({ params: { slug: standard.slug }, props: { standard } }));
+}
+
+const { standard } = Astro.props;
+const sideItems = standards.map((s) => ({ label: s.title, href: `/standards/${s.slug}` }));
+---
+
+<BaseLayout
+  title={standard.title}
+  description={standard.summary}
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Documentation standards', href: '/standards' },
+    { label: standard.title, href: `/standards/${standard.slug}` },
+  ]}
+>
+  <PageHeader title={standard.title} lede={standard.summary} />
+  <div class="container page-body">
+    <div class="layout-with-side">
+      <SideNav items={sideItems} label="Standards" currentPath={Astro.url.pathname} />
+      <article class="prose">
+        <p class="card__meta">Audience: {standard.audience} | Updated {standard.updated}</p>
+        {
+          standard.sections.map((section) => (
+            <section>
+              <h2>{section.heading}</h2>
+              {section.body.length > 1 ? (
+                <ul>
+                  {section.body.map((line) => (
+                    <li>{line}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>{section.body[0]}</p>
+              )}
+            </section>
+          ))
+        }
+      </article>
+    </div>
+  </div>
+</BaseLayout>

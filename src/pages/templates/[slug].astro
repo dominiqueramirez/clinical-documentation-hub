@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SideNav from '../../components/SideNav.astro';
+import { templates } from '../../data/content';
+
+export function getStaticPaths() {
+  return templates.map((template) => ({ params: { slug: template.slug }, props: { template } }));
+}
+
+const { template } = Astro.props;
+const sideItems = templates.map((t) => ({ label: t.title, href: `/templates/${t.slug}` }));
+---
+
+<BaseLayout
+  title={template.title}
+  description={template.summary}
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Note templates', href: '/templates' },
+    { label: template.title, href: `/templates/${template.slug}` },
+  ]}
+>
+  <PageHeader title={template.title} lede={template.summary} />
+  <div class="container page-body">
+    <div class="layout-with-side">
+      <SideNav items={sideItems} label="Templates" currentPath={Astro.url.pathname} />
+      <div>
+        <p class="card__meta">Setting: {template.setting}</p>
+        <pre class="template-box" id="template-text">{template.body}</pre>
+        <va-button id="copy-template" text="Copy template" secondary></va-button>
+        <p id="copy-status" class="demo-note" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const button = document.getElementById('copy-template');
+  const text = document.getElementById('template-text');
+  const status = document.getElementById('copy-status');
+  button?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(text?.textContent ?? '');
+      if (status) status.textContent = 'Template copied to clipboard.';
+    } catch {
+      if (status) status.textContent = 'Copy failed. Select the text and copy it manually.';
+    }
+  });
+</script>

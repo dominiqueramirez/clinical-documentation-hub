@@ -1,0 +1,106 @@
+---
+import '../styles/global.css';
+import { site, nav } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  breadcrumbs?: { label: string; href: string }[];
+}
+
+const { title, description = site.description, breadcrumbs } = Astro.props;
+const pageTitle = title ? `${title} | ${site.name}` : site.name;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(`${href}/`));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="container site-header__top">
+        <a class="site-header__title" href="/">
+          {site.name}
+          <span class="site-header__tag">{site.tagline}</span>
+        </a>
+      </div>
+      <nav class="site-nav" aria-label="Primary">
+        <div class="container">
+          <ul>
+            {
+              nav.map((item) => (
+                <li>
+                  <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      {
+        breadcrumbs && (
+          <div class="container">
+            <va-breadcrumbs
+              breadcrumb-list={JSON.stringify(breadcrumbs)}
+              label="Breadcrumb"
+              home-veterans-affairs="false"
+            />
+          </div>
+        )
+      }
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__cols">
+          <div>
+            <h2>Resources</h2>
+            <ul>
+              <li><a href="/standards">Documentation standards</a></li>
+              <li><a href="/templates">Note templates</a></li>
+              <li><a href="/quick-reference">Quick reference</a></li>
+              <li><a href="/training">Training and job aids</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Reference</h2>
+            <ul>
+              <li><a href="/policy">Policy and regulations</a></li>
+              <li><a href="/faq">Frequently asked questions</a></li>
+              <li><a href="/contact">Contact the documentation team</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Contact</h2>
+            <ul>
+              <li><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></li>
+              <li>{site.contactPhone}</li>
+            </ul>
+          </div>
+        </div>
+        <p class="site-footer__fine">
+          Template site with sample content for demonstration. Not official guidance.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      import { defineCustomElements } from '@department-of-veterans-affairs/web-components/loader';
+      defineCustomElements();
+    </script>
+  </body>
+</html>

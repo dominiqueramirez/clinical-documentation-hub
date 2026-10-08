@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { checklists, abbreviations } from '../data/content';
+---
+
+<BaseLayout
+  title="Quick reference"
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Quick reference', href: '/quick-reference' },
+  ]}
+>
+  <PageHeader
+    title="Quick reference"
+    lede="Checklists and lists to use at the point of care. Checkboxes are for your own use and are not saved."
+  />
+  <div class="container page-body prose">
+    {
+      checklists.map((list) => (
+        <section>
+          <h2 id={list.slug}>{list.title}</h2>
+          <ul class="checklist">
+            {list.items.map((item, i) => (
+              <li>
+                <input type="checkbox" id={`${list.slug}-${i}`} />
+                <label for={`${list.slug}-${i}`}>{item}</label>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+
+    <h2 id="do-not-use">Do-not-use abbreviations</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th scope="col">Item</th><th scope="col">Use instead</th></tr>
+      </thead>
+      <tbody>
+        {abbreviations.map((a) => <tr><td>{a.term}</td><td>{a.meaning}</td></tr>)}
+      </tbody>
+    </table>
+  </div>
+</BaseLayout>

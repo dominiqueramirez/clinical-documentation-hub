@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Card from '../../components/Card.astro';
+import { templates } from '../../data/content';
+---
+
+<BaseLayout
+  title="Note templates"
+  breadcrumbs={[
+    { label: 'Home', href: '/' },
+    { label: 'Note templates', href: '/templates' },
+  ]}
+>
+  <PageHeader
+    title="Note templates"
+    lede="Copy-ready layouts you can paste into your note. Replace the bracketed prompts with patient-specific details."
+  />
+  <div class="container page-body">
+    <ul class="card-grid">
+      {
+        templates.map((t) => (
+          <Card title={t.title} href={`/templates/${t.slug}`} summary={t.summary} tag={t.setting} linkText="View template" />
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
