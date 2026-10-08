@@ -15,5 +15,5 @@ const { title, href, summary, meta, tag, linkText = 'Read more' } = Astro.props;
   <h2><a href={href}>{title}</a></h2>
   <p>{summary}</p>
   {meta && <span class="card__meta">{meta}</span>}
-  <a class="card__link" href={href}>{linkText}<span class="usa-sr-only">: {title}</span></a>
+  <a class="card__link" href={href}>{linkText}<span class="usa-sr-only">{` about ${title}`}</span></a>
 </li>

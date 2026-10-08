@@ -1,10 +1,13 @@
 import { defineConfig } from 'astro/config';
 import { fileURLToPath } from 'node:url';
+import sitemap from '@astrojs/sitemap';
 
 const vaScope = fileURLToPath(new URL('./node_modules/@department-of-veterans-affairs', import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://clinical-documentation-hub.pages.dev',
+  integrations: [sitemap()],
   output: 'static',
   trailingSlash: 'ignore',
   build: { format: 'directory' },

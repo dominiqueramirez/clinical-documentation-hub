@@ -8,6 +8,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@department-of-veterans-affairs/css-library": "^0.36.2",
     "@department-of-veterans-affairs/web-components": "^24.16.2",
     "astro": "^7.3.8"

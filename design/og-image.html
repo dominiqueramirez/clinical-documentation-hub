@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face { font-family: Bitter; font-weight: 700; src: url('../node_modules/@department-of-veterans-affairs/css-library/dist/fonts/bitter-bold.woff2') format('woff2'); }
+  @font-face { font-family: 'Source Sans Pro Web'; font-weight: 400; src: url('../node_modules/@department-of-veterans-affairs/css-library/dist/fonts/sourcesanspro-regular-webfont.woff2') format('woff2'); }
+  @font-face { font-family: 'Source Sans Pro Web'; font-weight: 700; src: url('../node_modules/@department-of-veterans-affairs/css-library/dist/fonts/sourcesanspro-bold-webfont.woff2') format('woff2'); }
+  html, body { margin: 0; width: 1200px; height: 630px; }
+  body { background: #162e51; color: #fff; font-family: 'Source Sans Pro Web', Helvetica, Arial, sans-serif; position: relative; overflow: hidden; }
+  .band { position: absolute; left: 0; right: 0; bottom: 0; height: 18px; background: #00bde3; }
+  .panel { position: absolute; right: -120px; top: -120px; width: 520px; height: 520px; border-radius: 50%; background: #1a4480; }
+  .panel2 { position: absolute; right: 60px; bottom: 80px; width: 220px; height: 220px; border-radius: 50%; background: #005ea2; }
+  .doc { position: absolute; right: 120px; top: 150px; width: 260px; height: 330px; background: #fff; border-radius: 12px; padding: 28px; box-sizing: border-box; box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+  .doc i { display: block; height: 14px; background: #dfe1e2; border-radius: 7px; margin-bottom: 18px; }
+  .doc i.h { background: #005ea2; width: 55%; height: 18px; }
+  .doc i.s { width: 70%; } .doc i.m { width: 85%; }
+  .check { position: absolute; right: 90px; bottom: 100px; width: 90px; height: 90px; border-radius: 50%; background: #00a91c; }
+  .check:after { content: ''; position: absolute; left: 28px; top: 14px; width: 22px; height: 44px; border: solid #fff; border-width: 0 10px 10px 0; transform: rotate(45deg); }
+  .text { position: absolute; left: 80px; top: 0; bottom: 0; width: 650px; display: flex; flex-direction: column; justify-content: center; }
+  .eyebrow { font-size: 28px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #97d4ea; margin-bottom: 20px; }
+  h1 { font-family: Bitter, Georgia, serif; font-weight: 700; font-size: 76px; line-height: 1.08; margin: 0 0 28px; }
+  p { font-size: 34px; line-height: 1.35; margin: 0; color: #d9e8f6; }
+</style>
+</head>
+<body>
+  <div class="panel"></div><div class="panel2"></div>
+  <div class="doc"><i class="h"></i><i class="m"></i><i></i><i class="s"></i><i class="m"></i><i></i><i class="s"></i></div>
+  <div class="check"></div>
+  <div class="text">
+    <div class="eyebrow">For providers</div>
+    <h1>Clinical Documentation Hub</h1>
+    <p>Standards, note templates, and job aids for accurate, timely clinical notes.</p>
+  </div>
+  <div class="band"></div>
+</body>
+</html>

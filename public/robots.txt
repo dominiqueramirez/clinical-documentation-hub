@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://clinical-documentation-hub.pages.dev/sitemap-index.xml
